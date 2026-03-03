@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Holi Celebration</title>
+
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(-45deg, #ff4e50, #fc913a, #f9d423, #24c6dc, #514a9d);
+        background-size: 400% 400%;
+        animation: gradient 8s ease infinite;
+        color: white;
+    }
+
+    @keyframes gradient {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+    h1 {
+        margin-top: 20%;
+        font-size: 55px;
+        animation: glow 1.5s infinite alternate;
+    }
+    @keyframes glow {
+        from {text-shadow: 0 0 10px #fff;}
+        to {text-shadow: 0 0 30px #ff00ff;}
+    }
+    button {
+        padding: 12px 25px;
+        font-size: 18px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        margin: 10px;
+    }
+    .celebrateBtn { background: white; }
+    .shareBtn { background: #25D366; color: white; }
+
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        top: -10px;
+        animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(100vh) rotate(720deg)
+        }  
+    }
+</style>
+</head>
+
+<body>
+    <h1 id="wishText">🪷 Happy Holi My Soulmate in Advance🌈</h1>
+
+    <button class="celebrateBtn" onclick="celebrate()">Celebrate🍕</button>
+    <button class="shareBtn" onclick="shareWhatsApp()">Share on WhatsApp 📱</button>
+
+    <audio controls>
+        <source src="Holi.mp3.mpeg" type=""audio/mpeg>
+    </audio>
+
+    <script>
+        function celebrate() {
+            document.getElementById("music").play()
+            createConfetti();
+        }
+
+        function createConfetti() {
+            for(let i=0; i<100; i++) {
+                let confetti = document.createElement("div");
+                confetti.classList.add("confetti");
+                confetti.style.left = Math.random() *window.innerHeight + "px";
+                confetti.style.backgroundColor = "hs1(" + Math.random()*360 + ", 100%, 50%)";
+                confetti.style.animationDuration = (Math.random()*2 + 2) + "s";
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        function shareWhatsApp() {
+            let message = "🌈 Happy Holi! 🎨 Celebrate colours of joy!";
+            let url = "https://wa.me/?text=" +encodeURIComponent(message);
+            window.open(url, "_blan");
+        }
+    </script>
+</body>
+</html>
